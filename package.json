@@ -1,0 +1,33 @@
+{
+  "name": "chatbot_falante",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "João Souza (joaocarlinhos8@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "ibm-watson": "^6.1.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.5",
+    "socket.io": "^4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhon-kephler/ChatBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhon-kephler/ChatBot/issues"
+  },
+  "homepage": "https://github.com/jhon-kephler/ChatBot#readme",
+  "description": ""
+}

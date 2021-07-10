@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="utf-8"/>
+        <title>ChatBot Falante</title>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    
+    </head>
+
+    <body>
+        <br>
+        <div id="historic"></div>
+
+        <form id="chat">
+          
+            <label style="font-family:verdana;font-size:120%;margin-left:20px;">Comentário</label> 
+            <div class="messages"></div>
+            <input type="text" id="cadastro" name="message" placeholder="Digite sua Mensagem"/>
+            <input type="submit" value="Cadastrar"/>
+            
+
+        </form>  
+               
+        <script type="text/javascript">
+
+            $("form#chat").submit(function(e)
+            {
+                e.preventDefault();
+                let coment = document.getElementById('cadastro').value;
+                let url = 'http://localhost:3000/novoComentario' ;
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', url , true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status = 200){
+                            
+                            console.log(xhr.responseText);
+                        }
+                    }
+                }
+                xhr.send("texto='" + coment + "'");
+            })
+        
+        </script>
+        
+        
+
+
+    </body>
+</html>
