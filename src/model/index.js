@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV || 'development';
 const db = {};
 
 let sequelize;
-sequelize = new Sequelize('chatbot', 'root', 'S@sori700', {
+sequelize = new Sequelize('chatbot_smarkio', 'root', 'S@sori700', {
     host: 'localhost',
     dialect: 'mysql'
 });

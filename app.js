@@ -14,7 +14,6 @@ app.set('view engine', 'html');
 require('./src/Routes/index')(app);
 
 (async() => {
-
     const comentarios = require("./src/model/Comentario");
 })();
 

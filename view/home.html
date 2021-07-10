@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="utf-8"/>
+        <title>ChatBot Falante</title>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+        <br>
+        
+
+        <form id="chat">
+             
+            <div class="row">
+                <div class="col-1"></div>
+
+                <label style="margin-left:20px;"class="col-4 fs-2 fw-bold">Comentário</label>
+
+                <div class="col-2"></div>
+
+                <label style="margin-left:20px;"class="col-4 fs-2 fw-bold">Comentários</label> 
+            </div>
+            
+            <div class="row">
+                <div class="col-1"></div>
+
+                <input type="text" id="cadastro" name="message" placeholder="Digite sua Mensagem" class="col-md-4 mt-3"/>
+                
+                <div class="col-2"></div>
+                
+                <div class="messages  col-md-4 mt-3" id="messages"></div>
+                
+                <div class="col-1"></div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-1"></div>  
+
+                <input type="submit" value="Cadastrar" class="col-sm-4"/>
+
+            </div>
+
+        </form>  
+      
+       <script type="text/javascript">
+
+            $("form#chat").submit(function(e)
+            {
+                e.preventDefault();
+                let coment = document.getElementById('cadastro').value;
+                let url = 'http://localhost:3000/novoComentario' ;
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', url , true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status = 200){
+                            
+                            let urlget = 'http://localhost:3000/comentarios' ;
+                            let xhrget = new XMLHttpRequest();
+                            xhrget.open('GET', urlget , true);
+
+                            xhrget.onreadystatechange = function() {
+                                if (xhrget.readyState == 4) {
+                                    if (xhrget.status = 200){
+                            let retorno = JSON.parse(xhrget.responseText);
+
+                            retorno.forEach((newretorno) => {
+                                console.log(newretorno.texto);
+                                $('#messages').append('<div class="container col-11 d-grid gap-3" id="enviado">'+'<span class="text-align: left fs-5">'+ newretorno.texto +'</span><br>'+'</div>');
+                                        });
+                                    }
+                                }
+                            }
+                            xhrget.send();
+                        }
+                    }
+                }
+                xhr.send("texto= " + coment + " ");                
+            })
+
+            
+        
+        </script>            
+
+    </body>
+</html>

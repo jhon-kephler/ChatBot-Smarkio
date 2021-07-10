@@ -8,13 +8,13 @@ exports.NewComent = (req, res, next) => {
  };
  
  exports.AllComents = async (req, res, next) => {
-   const allComents = await Comentario.findAll();
-   res.status(200).json(allComents) 
+   const allComents = await Comentario.findAll()
+      res.status(200).json(allComents) 
 };
 
  exports.getPage = (req, res, next) => {
    let path = require('path');
-   res.status(200).sendFile(path.resolve('./Front/home.html'));
+   res.status(200).sendFile(path.resolve('./view/home.html'));
 };
 
  
